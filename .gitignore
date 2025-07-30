@@ -1,0 +1,12 @@
+# Visual Studio Code
+.vscode
+
+#dependencias
+package-lock.json
+node_modules/
+
+#config
+config.json
+
+#models
+app_core/models/
