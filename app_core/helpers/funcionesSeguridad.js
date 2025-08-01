@@ -1,10 +1,3 @@
-/**
- * @file archivo que contiene el modulo de funciones varias de seguridad
- * @name funcionesSeguridad.js
- * @author David Villota <david.villlota@udenar.edu.co>
- * @license UDENAR
- * @copyright 2016 Udenar
- **/
 var Request = require("request");
 var Q = require("q");
 var Respuesta = require("../helpers/respuesta");
