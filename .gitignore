@@ -9,4 +9,4 @@ node_modules/
 config.json
 
 #models
-app_core/models/
+# app_core/models/
