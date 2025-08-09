@@ -8,5 +8,6 @@ let ListaPrestamosController = require('../controllers/listaPrestamoController')
 router.get("/getListadoPrestamos", ListaPrestamosController.getListadoPrestamos)
 router.get("/getAsociadosByName/:cadena", ListaPrestamosController.getAsociadosByName)
 router.post("/createNuevoPrestamo", ListaPrestamosController.createNuevoPrestamo)
+router.put("/inactivarPrestamo", ListaPrestamosController.inactivarPrestamo)
 
 module.exports = router;

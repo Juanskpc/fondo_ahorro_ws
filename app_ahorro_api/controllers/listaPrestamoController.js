@@ -37,6 +37,7 @@ async function createNuevoPrestamo(req, res){
     try {
         let prestamo = req.body.prestamo;
         prestamo.id_persona = 1;
+        prestamo.fecha_inicio = prestamo.fecha_inicio.replace(/-/g, "/");
         let listado = await ListadoPrestamoDao.createNuevoPrestamo(prestamo);
 
         Respuesta.sendJsonResponse(res, 200, listado)
@@ -46,6 +47,22 @@ async function createNuevoPrestamo(req, res){
     }
 }
 
+/**
+ * Función para inactivar el prestamo de una persona
+ */
+async function inactivarPrestamo(req, res){
+    try {
+        let prestamo = req.body.prestamo;
+        let listado = await ListadoPrestamoDao.inactivarPrestamo(prestamo.id_prestamo);
+
+        Respuesta.sendJsonResponse(res, 200, listado)
+    } catch (error) {
+        console.log('error en inactivarPrestamo----------->', error)
+        Respuesta.sendJsonResponse(res, 500, error)
+    }
+}
+
 module.exports.getListadoPrestamos = getListadoPrestamos;
 module.exports.getAsociadosByName = getAsociadosByName;
 module.exports.createNuevoPrestamo = createNuevoPrestamo;
+module.exports.inactivarPrestamo = inactivarPrestamo;

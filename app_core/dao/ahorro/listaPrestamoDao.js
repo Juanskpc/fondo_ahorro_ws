@@ -8,13 +8,11 @@ function getListadoPrestamos() {
                 [Op.notIn]: ['I']
             }
         },
-        attributes: ['valor_prestamo', 'interes', 'descripcion', 'estado', 'fecha_inicio'],
         include: [{
             model: Models.AsociPersona,
             attributes: ['id_persona'],
             include: [{
-                model: Models.GenerPersona,
-                attributes: ['primer_nombre', 'primer_apellido']
+                model: Models.GenerPersona
             }]
         }],
         order: [
@@ -54,6 +52,17 @@ function createNuevoPrestamo(prestamo){
     return Models.AsociPrestamo.create(prestamo);
 }
 
+function inactivarPrestamo(idPrestamo){
+    return Models.AsociPrestamo.update({
+        estado: 'I'
+    }, {
+        where: {
+            id_prestamo: idPrestamo
+        }
+    })
+}
+
 module.exports.getListadoPrestamos = getListadoPrestamos;
 module.exports.getAsociadosByName = getAsociadosByName;
 module.exports.createNuevoPrestamo = createNuevoPrestamo;
+module.exports.inactivarPrestamo = inactivarPrestamo;

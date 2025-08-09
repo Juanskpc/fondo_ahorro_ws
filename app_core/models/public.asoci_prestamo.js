@@ -37,8 +37,8 @@ module.exports = (sequelize) => {
                 type: DataTypes.DATE,
                 allowNull: false,
             },
-            fecha_fin: {
-                type: DataTypes.DATE,
+            cuotas: {
+                type: DataTypes.INTEGER,
                 allowNull: false,
             },
             interes: {
