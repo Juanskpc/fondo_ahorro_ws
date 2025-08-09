@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
     class GenerPersona extends Model {
         static associate(models) {
             GenerPersona.hasMany(models.AsociPrestamo, { foreignKey: 'id_persona' });
+            GenerPersona.hasMany(models.AsociPersona, { foreignKey: 'id_persona' });
         }
     }
 
@@ -22,6 +23,10 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
+            },
+            num_identificacion: {
+                type: DataTypes.STRING,
+                allowNull: false,
             },
             primer_nombre: {
                 type: DataTypes.STRING,
@@ -47,6 +52,19 @@ module.exports = (sequelize) => {
                 type: DataTypes.CHAR(1),
                 allowNull: true,
             },
+             nombre_completo: {
+                type: DataTypes.VIRTUAL,
+                get() {
+                    const pn = this.primer_nombre || '';
+                    const sn = this.segundo_nombre || '';
+                    const pa = this.primer_apellido || '';
+                    const sa = this.segundo_apellido || '';
+                    return [pn, sn, pa, sa].filter(Boolean).join(' ');
+                },
+                set(value) {
+                    throw new Error('nombre_completo es un campo calculado y no se puede asignar');
+                }
+            }
         },
         {
             sequelize,

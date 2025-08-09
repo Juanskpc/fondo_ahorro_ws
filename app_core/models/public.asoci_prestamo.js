@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.DATE,
                 allowNull: false,
             },
+            fecha_fin: {
+                type: DataTypes.DATE,
+                allowNull: false,
+            },
             interes: {
                 type: DataTypes.DOUBLE,
                 allowNull: false,
@@ -51,7 +55,7 @@ module.exports = (sequelize) => {
             },
             fecha_creacion: {
                 type: DataTypes.DATE,
-                allowNull: false,
+                allowNull: true,
             },
             id_persona: {
                 type: DataTypes.INTEGER,
