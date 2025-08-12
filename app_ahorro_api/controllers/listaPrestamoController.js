@@ -62,7 +62,39 @@ async function inactivarPrestamo(req, res){
     }
 }
 
+/**
+ * Función para registrar un abono a un préstamo
+ */
+async function createAbonoPrestamo(req, res){
+    try {
+        let abono = req.body.abono;
+        let listado = await ListadoPrestamoDao.createAbonoPrestamo(abono);
+
+        Respuesta.sendJsonResponse(res, 200, listado)
+    } catch (error) {
+        console.log('error en createAbonoPrestamo----------->', error)
+        Respuesta.sendJsonResponse(res, 500, error)
+    }
+}
+
+/**
+ * Función para inactivar un abono
+ */
+async function inactivarAbono(req, res){
+    try {
+        let idAbono = req.body.idAbono;
+        let listado = await ListadoPrestamoDao.inactivarAbono(idAbono);
+
+        Respuesta.sendJsonResponse(res, 200, listado)
+    } catch (error) {
+        console.log('error en inactivarAbono----------->', error)
+        Respuesta.sendJsonResponse(res, 500, error)
+    }
+}
+
 module.exports.getListadoPrestamos = getListadoPrestamos;
 module.exports.getAsociadosByName = getAsociadosByName;
 module.exports.createNuevoPrestamo = createNuevoPrestamo;
 module.exports.inactivarPrestamo = inactivarPrestamo;
+module.exports.createAbonoPrestamo = createAbonoPrestamo;
+module.exports.inactivarAbono = inactivarAbono;

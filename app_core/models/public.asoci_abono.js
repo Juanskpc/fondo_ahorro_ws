@@ -51,7 +51,7 @@ module.exports = (sequelize) => {
             },
             id_tipo_abono: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             }
         },
         {

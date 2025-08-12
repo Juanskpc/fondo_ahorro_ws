@@ -14,6 +14,12 @@ function getListadoPrestamos() {
             include: [{
                 model: Models.GenerPersona
             }]
+        }, {
+            model: Models.AsociAbono,
+            required: false,
+            where: {
+                estado: 'A'
+            }
         }],
         order: [
             ['fecha_inicio', 'DESC'],
@@ -62,7 +68,23 @@ function inactivarPrestamo(idPrestamo){
     })
 }
 
+function createAbonoPrestamo(abono){
+    return Models.AsociAbono.create(abono);
+}
+
+function inactivarAbono(idAbono){
+    return Models.AsociAbono.update({
+        estado: 'I'
+    }, {
+        where: {
+            id_abono: idAbono
+        }
+    })
+}
+
 module.exports.getListadoPrestamos = getListadoPrestamos;
 module.exports.getAsociadosByName = getAsociadosByName;
 module.exports.createNuevoPrestamo = createNuevoPrestamo;
 module.exports.inactivarPrestamo = inactivarPrestamo;
+module.exports.createAbonoPrestamo = createAbonoPrestamo;
+module.exports.inactivarAbono = inactivarAbono;
